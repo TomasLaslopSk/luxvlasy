@@ -1,0 +1,29 @@
+{
+  "name": "luxvlasy",
+  "version": "1.0.0",
+  "description": "Eshop najlepsia vlasova kozmetika na Slovensku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomasLaslopSk/luxvlasy.git"
+  },
+  "keywords": [
+    "eshop",
+    "vlasy",
+    "hair",
+    "kozmetika",
+    "redken",
+    "balmain",
+    "matrix",
+    "greatlenghts"
+  ],
+  "author": "Tomas Laslop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomasLaslopSk/luxvlasy/issues"
+  },
+  "homepage": "https://github.com/TomasLaslopSk/luxvlasy#readme"
+}
