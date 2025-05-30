@@ -1,6 +1,6 @@
 // cart.js
 // Define the base path for consistent URL generation.
-// This must match your MAMP setup, e.g., '/luxvlasy_mamp/' if your project is in /htdocs/luxvlasy_mamp/
+// This must match your MAMP setup, e.g., '/luxvlasy/' if your project is in /htdocs/luxvlasy/
 const basePath = BASE_URL_JS;
 
 // Global function to update the cart count badge in the header

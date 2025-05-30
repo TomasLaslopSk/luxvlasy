@@ -10,11 +10,11 @@ if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'localhos
     define('DB_NAME', 'luxvlasy_shop'); // Názov vašej lokálnej DB
 
     // Základná cesta pre statické súbory (CSS, JS, obrázky) a PHP stránky
-    define('BASE_URL_PATH', '/luxvlasy_mamp/'); // Na produkcii je to koreň webu (prázdny reťazec)
+    define('BASE_URL_PATH', '/luxvlasy/'); // Na produkcii je to koreň webu (prázdny reťazec)
     
     // Cesta k adresáru s PHP API skriptami (consistent definition for local)
     // This defines the subdirectory name, which will be combined with BASE_URL_JS in JS
-    define('API_PATH_DIR', 'php/'); // Example: Your PHP API files are in /luxvlasy_mamp/php/
+    define('API_PATH_DIR', 'php/'); // Example: Your PHP API files are in /luxvlasy/php/
 } else {
     // PRODUKČNÉ PROSTREDIE (Websupport.sk)
     define('DB_HOST', '37.9.175.195'); // Napr. 'mysql.websupport.sk' alebo 'localhost'

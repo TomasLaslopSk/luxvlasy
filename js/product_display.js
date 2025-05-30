@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtonsContainer = document.querySelector('.filter-buttons-container'); // Get the filter buttons container
 
     // Define your project's base path. This is crucial for consistent asset loading.
-    // Example: For http://localhost:8888/luxvlasy_mamp/, the basePath should be '/luxvlasy_mamp/'.
+    // Example: For http://localhost:8888/luxvlasy/, the basePath should be '/luxvlasy/'.
     // If your project was directly in htdocs (e.g., http://localhost:8888/), it would be '/'.
     const basePath = BASE_URL_JS;
     
