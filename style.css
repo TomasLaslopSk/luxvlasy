@@ -561,7 +561,7 @@ main {
     background-color: #e0e0e0;
     color: #424242;
     width: fit-content;
-    padding: 0.35em 0.75em; 
+    padding: 0.35em 0.75em;
     border-radius: 9999px;
     font-size: var(--font-size-sm, 0.875rem);
     font-weight: 500;
@@ -1313,611 +1313,445 @@ main {
 
     .slider-prev,
     .slider-next {
-        padding: var(--spacing-sm) var(--spacing-md);
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-    }
-
-    .slider-prev {
-        left: var(--spacing-md);
-    }
-
-    .slider-next {
-        right: var(--spacing-md);
-    }
-
-    .slider-dot {
-        width: 10px;
-        height: 10px;
+        padding: var(--spacing-sm) var(--spacing-md)
     }
 }
 
-@media (max-width: 768px) {
-    .brand-logo .site-logo {
-        max-width: 120px;
+/* --- Order Confirmation Page Styles --- */
+.order-confirmation-container {
+    max-width: 900px; /* Adjust as per desired width */
+    margin: var(--spacing-xxxl) auto; /* Top/bottom margin, auto left/right for centering */
+    padding: var(--spacing-xl); /* Internal padding */
+    background-color: var(--background-white);
+    border-radius: var(--border-radius-xl); /* Match other main containers */
+    box-shadow: 0 4px 15px var(--box-shadow-medium); /* Consistent shadow */
+    text-align: left; /* Default text alignment */
+}
+
+/* Confirmation Header Section */
+.confirmation-header-section {
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px dashed var(--border-color-medium); /* Dashed line for separation */
+}
+
+.confirmation-title {
+    font-size: 2.2rem; /* Larger and prominent */
+    color: var(--primary-text-color); /* Main text color */
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm); /* Space between icon and text */
+    font-weight: 700;
+}
+
+.confirmation-icon {
+    color: var(--confirmation-success-color); /* Green checkmark */
+    font-size: 2.8rem; /* Large icon */
+}
+
+.confirmation-title.error .confirmation-icon {
+    color: var(--confirmation-error-color); /* Red for error icon */
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.order-id-display,
+.confirmation-instruction,
+.order-date-display {
+    font-size: var(--font-size-base);
+    color: var(--secondary-text-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.order-id-display strong,
+.order-date-display strong,
+.confirmation-instruction strong {
+    color: var(--primary-text-color);
+    font-weight: 700;
+}
+
+
+/* Order Details Summary Section */
+.order-details-summary-section {
+    margin-bottom: var(--spacing-xxl);
+}
+
+/* Re-using .section-title for 'Detaily Objednávky' and 'Položky objednávky' */
+/* Adjust the `section-title` rule if you want the underline centered for these specific titles */
+.order-details-summary-section .section-title {
+    text-align: center; /* Center the title itself */
+    margin-bottom: var(--spacing-xl); /* Adjust bottom margin for section titles */
+}
+
+.order-details-summary-section .section-title::after {
+    left: 50%; /* Center the underline */
+    transform: translateX(-50%);
+    width: 80px; /* Make underline a bit wider */
+}
+
+.order-details-summary-section .section-title.items-title {
+    margin-top: var(--spacing-xxl); /* More space before items title */
+}
+
+.card-icon {
+    color: var(--confirmation-blue-accent); /* A distinct color for card icons */
+    font-size: 1.6rem;
+    margin-right: var(--spacing-sm);
+}
+
+.order-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: var(--spacing-lg); /* Space between cards */
+    margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+    .order-summary-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
     }
+}
 
-    .main-nav .nav-list {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-xs);
-    }
+.summary-card {
+    background-color: var(--background-light-grey); /* Lighter background for cards */
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: 0 2px 8px var(--box-shadow-light);
+}
 
-    .main-nav .nav-item {
-        width: 100%;
-        text-align: center;
-    }
+.summary-card h3 {
+    font-size: 1.4rem;
+    color: var(--primary-text-color);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
 
-    .main-nav .nav-item a {
-        padding: 8px 0;
-    }
+.summary-card p {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+    color: var(--secondary-text-color);
+}
 
-    /* For mobile, dropdown becomes static and always open for simplicity */
-    .main-nav .nav-item.dropdown .dropdown-menu {
-        position: static;
-        display: block;
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-        background-color: #f8f8f8;
-        padding: var(--spacing-xs) 0;
-        margin-top: var(--spacing-xs);
-        transform: translateY(0);
-        /* Remove initial transform */
-        opacity: 1;
-        /* Always visible */
-    }
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: var(--spacing-sm); /* Space from label */
+}
 
-    .main-nav .nav-item.dropdown .dropdown-menu a {
-        padding: var(--spacing-xs) var(--spacing-md);
-    }
+/* Status badge specific colors using your defined variables */
+.status-pending, .status-awaiting-payment {
+    background-color: var(--status-pending-bg);
+    color: var(--status-pending-text);
+}
+.status-processing {
+    background-color: var(--status-processing-bg);
+    color: var(--status-processing-text);
+}
+.status-completed {
+    background-color: var(--status-completed-bg);
+    color: var(--status-completed-text);
+}
+.status-cancelled {
+    background-color: var(--status-cancelled-bg);
+    color: var(--status-cancelled-text);
+}
 
-    .main-nav .nav-item.dropdown .dropdown-toggle::after {
-        display: none;
-        /* Hide caret on mobile if dropdown is always open */
-    }
 
-    .products-section {
-        padding: 0 var(--spacing-sm);
-        /* Adjust section padding as well */
-    }
+/* QR Code Section */
+.qr-code-section {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px dashed var(--border-color-medium);
+}
 
-    .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Allow smaller card width */
-        gap: var(--spacing-md);
-    }
+.qr-code-section h4 {
+    font-size: 1.2rem;
+    color: var(--primary-text-color);
+    margin-bottom: var(--spacing-md);
+}
 
-    .product-card {
-        padding: var(--spacing-md); /* Slightly less internal padding */
-    }
+.qr-code-image {
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto var(--spacing-md) auto;
+    border: 1px solid var(--border-color-light);
+    padding: var(--spacing-xs);
+    background-color: var(--background-white);
+    box-shadow: 0 2px 5px var(--box-shadow-light);
+    border-radius: var(--border-radius-sm);
+}
 
-    .product-card img {
-        max-height: 160px; /* Reduce max-height for images */
-        margin-bottom: var(--spacing-sm);
-    }
+.qr-info {
+    font-size: var(--font-size-sm);
+    color: var(--text-color-light-grey);
+    margin-bottom: var(--spacing-md);
+}
 
-    .product-card .add-to-cart-btn {
-        font-size: var(--font-size-base); /* Make button text slightly smaller */
-        padding: var(--spacing-sm);
-    }
+.bank-details {
+    text-align: left;
+    margin-top: var(--spacing-md);
+    background-color: var(--confirmation-blue-light); /* Light blue background for bank details */
+    border: 1px solid var(--confirmation-blue-border); /* Matching border */
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    color: var(--primary-text-color);
+}
 
-    .product-card .product-brand-name {
-        font-size: var(--font-size-base);
-        /* Slightly smaller brand name */
-    }
+.bank-details h4 {
+    font-size: 1.1rem;
+    color: var(--primary-text-color);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    font-weight: 600;
+}
 
-    .product-card .product-title-name {
-        font-size: var(--font-size-sm);
-        /* Slightly smaller title */
-        -webkit-line-clamp: 3;
-        /* Allow more lines for title if needed */
-    }
+.bank-details p {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+}
 
-    .product-card .product-short-description {
-        font-size: var(--font-size-xs);
-        /* Smaller text for category and description */
-        -webkit-line-clamp: 4;
-        /* Allow more lines for description if needed */
-    }
+.bank-details p strong {
+    color: var(--secondary-text-color);
+}
 
-    .product-card .product-price-display .discounted-price,
-    .product-card .product-price-display .single-price {
-        font-size: 1.3em;
-        /* Slightly smaller price */
-    }
 
-    .product-card img {
-        max-height: 120px;
-        /* Slightly smaller image on medium screens */
-    }
+/* Order Items List */
+.order-items-list {
+    margin-top: var(--spacing-md);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    background-color: var(--background-light-grey); /* Consistent background */
+    box-shadow: 0 2px 8px var(--box-shadow-light);
+}
 
-    .categories-list {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
+.order-item-card {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color-light);
+    gap: var(--spacing-md);
+    background-color: var(--background-white); /* White background for each item */
+    transition: background-color 0.2s ease;
+}
 
-    .section-title {
-        font-size: 2em;
-        text-align: center;
-    }
+.order-item-card:hover {
+    background-color: #fcfcfc; /* Slight hover effect */
+}
 
-    .section-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.order-item-card:last-child {
+    border-bottom: none;
+}
 
-    .products-section,
-    .checkout-process-container {
-        padding: 0 var(--spacing-md);
-        /* Apply padding to main content */
-    }
+.item-image-wrapper {
+    flex-shrink: 0;
+    width: 90px; /* Slightly larger image container */
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color-medium);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background-color: #fff;
+}
 
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.item-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-    .cart-item img {
-        margin-bottom: var(--spacing-sm);
-        max-width: 80px;
-        /* Smaller image on mobile cart */
-        height: 80px;
-    }
+.delivery-icon-in-list {
+    font-size: 3.5rem; /* Larger icon for delivery */
+    color: var(--primary-text-color); /* Match text color */
+}
 
-    .cart-item h4,
-    .cart-item p,
-    .cart-item .price,
-    .cart-item .subtotal {
-        width: 100%;
-        text-align: left;
-    }
+.item-info {
+    flex-grow: 1; /* Takes up available space */
+    min-width: 150px; /* Ensure it doesn't get too small */
+}
 
-    .cart-item input[type="number"] {
-        width: 100%;
-        text-align: left;
-        margin-top: var(--spacing-sm);
-    }
+.item-name {
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-base);
+}
 
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
+.item-quantity,
+.item-price {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-text-color);
+}
 
-    .form-row .form-group {
-        margin-bottom: var(--spacing-md);
-    }
+.item-price {
+    flex-shrink: 0; /* Prevent price from shrinking */
+    width: 120px; /* Give it a fixed width */
+    text-align: right;
+}
 
-    .form-row .form-group:last-child {
-        margin-bottom: 0;
-    }
+.item-subtotal {
+    font-weight: 700;
+    color: var(--accent-color-pink);
+    font-size: var(--font-size-lg);
+    white-space: nowrap; /* Prevent wrapping for price */
+    text-align: right;
+    width: 100px; /* Give it a fixed width */
+}
 
-    .form-buttons {
-        flex-direction: column;
-    }
 
-    /* --- ORDER CONFIRMATION PAGE STYLES --- */
+/* Order Total Summary */
+.order-total-summary {
+    text-align: right;
+    margin-top: var(--spacing-xxl);
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--border-color-medium); /* Stronger line for total */
+}
 
+.order-total-summary p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+}
+
+.total-amount {
+    color: var(--accent-color-pink); /* Pink for total amount */
+    font-size: 1.8em; /* Larger total amount */
+    margin-left: var(--spacing-sm);
+}
+
+/* Action Buttons (Confirmation Page) */
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xxxl);
+}
+
+.confirmation-buttons .button {
+    min-width: 200px; /* Ensure buttons are a decent size */
+}
+
+/* Error states on confirmation page */
+.order-confirmation-container .error {
+    color: var(--confirmation-error-color);
+}
+
+.order-confirmation-container .error-message {
+    color: var(--confirmation-error-color);
+    font-size: 1.2rem;
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+.order-confirmation-container .error-suggestion {
+    text-align: center;
+    margin-top: var(--spacing-md);
+    color: var(--secondary-text-color);
+}
+
+.order-confirmation-container .error-buttons {
+    justify-content: center;
+}
+
+
+/* Responsive adjustments for confirmation page */
+@media (max-width: 767px) {
     .order-confirmation-container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: var(--background-white);
-        /* Changed from f9f9f9 to white */
-        border-radius: var(--border-radius-xl);
-        /* Increased border-radius */
-        box-shadow: 0 4px 15px var(--box-shadow-medium);
-        /* Adjusted shadow */
-        font-family: var(--font-family-primary);
-        color: var(--primary-text-color);
-    }
-
-    /* Confirmation Header Section */
-    .confirmation-header-section {
-        text-align: center;
-        margin-bottom: var(--spacing-xxxl);
-        padding-bottom: var(--spacing-lg);
-        border-bottom: 1px solid var(--border-color-light);
+        padding: var(--spacing-md);
+        margin: var(--spacing-lg) auto;
     }
 
     .confirmation-title {
-        color: var(--confirmation-success-color);
-        /* Green for success */
-        font-size: 2.2em;
-        margin-bottom: var(--spacing-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-sm);
-        font-weight: 700;
-        /* Make it bolder */
-    }
-
-    .confirmation-title.error {
-        color: var(--confirmation-error-color);
-        /* Red for error */
+        font-size: 1.8rem;
     }
 
     .confirmation-icon {
-        font-size: 1.2em;
-        /* Slightly larger icon */
-    }
-
-    .confirmation-message {
-        font-size: var(--font-size-lg);
-        color: var(--secondary-text-color);
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .order-id-display,
-    .confirmation-instruction,
-    .order-date-display {
-        font-size: var(--font-size-base);
-        color: var(--secondary-text-color);
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .order-id-display strong,
-    .confirmation-instruction strong,
-    .order-date-display strong {
-        color: var(--primary-text-color);
-        font-weight: 600;
-    }
-
-
-    /* Order Details Summary Section */
-    .order-details-summary-section {
-        margin-bottom: var(--spacing-xxxl);
-    }
-
-    .order-details-summary-section .section-title {
-        font-size: 1.8em;
-        /* Slightly smaller than main page section title */
-        color: var(--primary-text-color);
-        margin-bottom: var(--spacing-xl);
-        text-align: center;
-        padding-left: 0;
-        /* Remove left padding */
-        padding-right: 0;
-        /* Remove right padding */
-        justify-content: center;
-        /* Center content */
-    }
-
-    .order-details-summary-section .section-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: var(--confirmation-blue-accent);
-        /* Blue accent for this section */
-    }
-
-    .order-summary-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-xl);
-        margin-bottom: var(--spacing-xxl);
-    }
-
-    .summary-card {
-        background-color: var(--background-white);
-        /* Already white, keeping for clarity */
-        padding: var(--spacing-xl);
-        border-radius: var(--border-radius-lg);
-        box-shadow: 0 2px 10px var(--box-shadow-light);
-        border-left: 5px solid var(--confirmation-blue-accent);
-        /* Blue accent line */
+        font-size: 2.2rem;
     }
 
     .summary-card h3 {
-        font-size: 1.4em;
-        color: var(--confirmation-blue-accent);
-        margin-bottom: var(--spacing-md);
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-sm);
+        font-size: 1.2rem;
     }
 
-    .summary-card .card-icon {
-        color: var(--confirmation-blue-accent);
-        font-size: 1.2em;
-    }
-
-    .summary-card p {
-        margin-bottom: var(--spacing-xs);
-        color: var(--secondary-text-color);
-        line-height: 1.5;
-    }
-
-    .summary-card p strong {
-        color: var(--primary-text-color);
-        font-weight: 600;
-    }
-
-    /* Status Badges */
-    .status-badge {
-        display: inline-block;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        font-weight: 600;
-        text-transform: capitalize;
-        margin-top: 5px;
-        white-space: nowrap;
-        /* Prevent wrapping */
-    }
-
-    .status-badge.status-pending,
-    .status-badge.status-awaiting-payment {
-        background-color: var(--status-pending-bg);
-        color: var(--status-pending-text);
-    }
-
-    .status-badge.status-processing {
-        background-color: var(--status-processing-bg);
-        color: var(--status-processing-text);
-    }
-
-    .status-badge.status-completed,
-    .status-badge.status-paid {
-        background-color: var(--status-completed-bg);
-        color: var(--status-completed-text);
-    }
-
-    .status-badge.status-cancelled,
-    .status-badge.status-failed {
-        background-color: var(--status-cancelled-bg);
-        color: var(--status-cancelled-text);
-    }
-
-    /* Order Items List */
-    .order-items-list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-md);
-        margin-top: var(--spacing-lg);
-        padding-bottom: var(--spacing-xxl);
-        border-bottom: 1px dashed var(--border-color-light);
-    }
-
-    .order-item-card {
-        display: flex;
-        align-items: center;
-        background-color: var(--background-white);
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius-lg);
-        box-shadow: 0 1px 8px var(--box-shadow-light);
-    }
-
-    .order-item-card .item-image-wrapper {
-        width: 80px;
-        height: 80px;
-        min-width: 80px;
-        min-height: 80px;
-        overflow: hidden;
-        border-radius: var(--border-radius-sm);
-        margin-right: var(--spacing-md);
-        border: 1px solid var(--border-color-light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .order-item-card img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .order-item-card .item-info {
-        flex-grow: 1;
-    }
-
-    .order-item-card .item-name {
-        font-weight: 600;
-        color: var(--primary-text-color);
-        margin-bottom: var(--spacing-xs);
-        font-size: var(--font-size-base);
-    }
-
-    .order-item-card .item-quantity {
-        font-size: var(--font-size-sm);
-        color: var(--secondary-text-color);
-    }
-
-    .order-item-card .item-price,
-    .order-item-card .item-subtotal {
-        font-weight: 600;
-        color: var(--primary-text-color);
-        margin-left: var(--spacing-lg);
-        text-align: right;
-        min-width: 80px;
-        font-size: var(--font-size-base);
-    }
-
-    .order-item-card .item-subtotal {
-        font-size: var(--font-size-lg);
-        color: var(--accent-color-pink);
-        min-width: 100px;
-    }
-
-    /* Order Total Summary */
-    .order-total-summary {
-        text-align: right;
-        font-size: 1.4em;
-        font-weight: 700;
-        margin-top: var(--spacing-xl);
-        padding-top: var(--spacing-md);
-        border-top: 2px solid var(--confirmation-blue-accent);
-        color: var(--primary-text-color);
-    }
-
-    .order-total-summary .total-amount {
-        color: var(--accent-color-pink);
-        /* Highlight total amount with pink accent */
-        font-size: 1.2em;
-    }
-
-    /* Action Buttons for Confirmation */
-    .action-buttons.confirmation-buttons,
-    .action-buttons.error-buttons {
-        text-align: center;
-        margin-top: var(--spacing-xxxl);
-    }
-
-    .action-buttons .button {
-        padding: 12px 30px;
-        /* Slightly more padding for these main buttons */
-        font-size: 1.15em;
-    }
-
-    /* QR Code Section */
-    .qr-code-section {
-        background-color: var(--confirmation-blue-light);
-        /* Light blue background */
-        border: 1px solid var(--confirmation-blue-border);
-        padding: var(--spacing-xl);
-        border-radius: var(--border-radius-lg);
-        text-align: center;
-        margin-top: var(--spacing-xl);
-    }
-
-    .qr-code-section h4 {
-        color: var(--confirmation-blue-accent);
-        font-size: 1.2em;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .qr-code-image {
-        max-width: 180px;
-        height: auto;
-        border: 1px solid var(--border-color-light);
-        padding: 5px;
-        background-color: var(--background-white);
-        border-radius: var(--border-radius-sm);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .qr-info {
-        font-size: var(--font-size-sm);
-        color: var(--secondary-text-color);
-        margin-bottom: var(--spacing-md);
+    .card-icon {
+        font-size: 1.4rem;
     }
 
     .bank-details {
-        text-align: left;
-        background-color: #f0f8ff;
-        /* Even lighter blue */
-        border: 1px dashed var(--confirmation-blue-border);
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius-sm);
-        margin-top: var(--spacing-md);
-    }
-
-    .bank-details h4 {
-        margin-top: 0;
-        color: var(--confirmation-blue-accent);
-        font-size: 1.1em;
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .bank-details p {
-        margin-bottom: var(--spacing-xs);
-        color: var(--primary-text-color);
-        font-size: var(--font-size-sm);
-    }
-
-    /* Error Page Styling */
-    .order-confirmation-container h1.error {
-        color: var(--confirmation-error-color);
-    }
-
-    .order-confirmation-container .error-message {
-        color: var(--confirmation-error-color);
-        font-size: var(--font-size-lg);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .order-confirmation-container .error-suggestion {
-        font-size: var(--font-size-base);
-        color: var(--secondary-text-color);
-    }
-
-    .order-confirmation-container .error-suggestion a {
-        color: var(--confirmation-blue-accent);
-        text-decoration: underline;
-    }
-
-    .order-confirmation-container {
-        padding: var(--spacing-lg);
-        margin: var(--spacing-xxl) auto;
-    }
-
-    .confirmation-title {
-        font-size: 1.8em;
-    }
-
-    .order-summary-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    .summary-card {
-        padding: var(--spacing-md);
-    }
-
-    .order-details-summary-section .section-title {
-        font-size: 1.5em;
+        padding: var(--spacing-sm);
     }
 
     .order-item-card {
-        flex-wrap: wrap;
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start;
         text-align: left;
+        gap: var(--spacing-sm);
     }
 
-    .order-item-card .item-image-wrapper {
-        margin-right: 0;
+    .item-image-wrapper {
+        width: 80px;
+        height: 80px;
         margin-bottom: var(--spacing-sm);
-        width: 100%;
-        /* Full width on small screens */
-        height: auto;
-        min-width: unset;
-        min-height: unset;
     }
 
-    .order-item-card img {
-        width: 100%;
-        /* Make image take full width of its wrapper */
-        height: 120px;
-        /* Fixed height for consistency */
-        object-fit: contain;
+    .delivery-icon-in-list {
+        font-size: 3rem;
     }
 
-    .order-item-card .item-info,
-    .order-item-card .item-price,
-    .order-item-card .item-subtotal {
-        width: 100%;
-        margin-left: 0;
-        text-align: left;
+    .item-info,
+    .item-price,
+    .item-subtotal {
+        width: 100%; /* Take full width */
+        text-align: left; /* Align text left */
+        margin-top: 0;
     }
 
-    .order-item-card .item-subtotal {
-        margin-top: var(--spacing-sm);
-        text-align: right;
-        /* Keep subtotal aligned right for comparison */
+    .item-price {
+        text-align: left; /* Keep price aligned left too */
     }
 
-    .action-buttons .button {
-        padding: 10px 20px;
-        font-size: 1em;
+    .item-subtotal {
+        text-align: right; /* Keep subtotal aligned right for emphasis */
+        margin-left: auto; /* Push to right */
+    }
+
+    .order-total-summary p {
+        font-size: 1.3rem;
+    }
+
+    .total-amount {
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 480px) {
-
-    /* Add a new breakpoint for smaller phones */
-    .product-card img {
-        max-height: 100px;
-        /* Even smaller image on very small screens */
-        margin-bottom: var(--spacing-sm);
-        /* Adjust spacing */
+    .confirmation-title {
+        font-size: 1.6rem;
+    }
+    .confirmation-icon {
+        font-size: 2rem;
+    }
+    .confirmation-buttons .button {
+        min-width: unset;
+        width: 100%;
+        padding: 10px 15px;
     }
 }

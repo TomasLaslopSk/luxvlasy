@@ -55,12 +55,25 @@ try {
     exit;
 }
 
-// --- The filtering logic remains the same as your original file ---
-// This part filters the $allProducts array based on GET parameters
+// --- Filtering Logic ---
+$filteredProducts = [];
+
+// Determine the filter type and value(s)
 $filterType = $_GET['filter_type'] ?? 'all';
 $filterValue = $_GET['filter_value'] ?? '';
 
-$filteredProducts = [];
+// Priority given to 'category[]' if present for multi-category filtering
+// This ensures that if category[]= parameters are in the URL, they are processed
+if (isset($_GET['category']) && is_array($_GET['category'])) {
+    $filterType = 'category'; // Force filterType to 'category' if array of categories is sent
+    $filterValue = $_GET['category']; // Assign the array of categories
+} else if (isset($_GET['category']) && !is_array($_GET['category'])) {
+    // This handles a single 'category' parameter without array notation
+    // e.g., index.php?category=Šampóny (without filter_type)
+    $filterType = 'category';
+    $filterValue = $_GET['category'];
+}
+
 
 if ($filterType === 'all') {
     $filteredProducts = $allProducts;
@@ -78,10 +91,28 @@ if ($filterType === 'all') {
         }
     }
 } elseif ($filterType === 'category') {
-    foreach ($allProducts as $product) {
-        if (isset($product['product_category']) && strcasecmp($product['product_category'], $filterValue) === 0) {
-            $filteredProducts[] = $product;
+    // Handle multi-category filtering (if $filterValue is an array)
+    if (is_array($filterValue) && !empty($filterValue)) {
+        // Convert all filter values to lowercase for case-insensitive comparison
+        // Using mb_strtolower for multi-byte characters
+        $filterValuesLower = array_map('mb_strtolower', $filterValue);
+        foreach ($allProducts as $product) {
+            if (isset($product['product_category']) && in_array(mb_strtolower($product['product_category']), $filterValuesLower)) {
+                $filteredProducts[] = $product;
+            }
         }
+    } else if (is_string($filterValue) && $filterValue !== '') { // Handle single category filtering (original behavior)
+        foreach ($allProducts as $product) {
+            if (isset($product['product_category']) && strcasecmp($product['product_category'], $filterValue) === 0) {
+                $filteredProducts[] = $product;
+            }
+        }
+    } else {
+        // If 'category' filterType is set, but no valid category value(s) are provided,
+        // it means nothing should be filtered, so return no products by category.
+        // Or, you could return all products if you prefer a 'no selection' to mean 'all in category group'.
+        // For now, we'll make it return no products in this specific filter type if nothing is selected.
+        $filteredProducts = [];
     }
 }
 

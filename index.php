@@ -52,7 +52,7 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
         <nav class="main-nav">
             <ul class="nav-list">
                 <li class="nav-item"><a href="<?php echo $basePath; ?>index.php">Domov</a></li>
-                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?category=Šampóny">Starostlivosť o vlasy</a></li>
+                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?filter_type=category&category[]=Šampóny&category[]=Masky&category[]=Styling&category[]=Oleje">Starostlivosť o vlasy</a></li>
                 <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?category=Luxusné%20doplnky">Luxusné doplnky</a></li>
                 <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?filter=discount">Akcie</a></li>
             </ul>
