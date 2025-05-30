@@ -1,10 +1,10 @@
 <?php
 // cart.php
 session_start();
+require_once 'php/db_connection.php'; // Corrected path (assuming db_connection.php is in php/ subfolder)
 
 // Define the base path for consistent URL generation
-// This must match your MAMP setup, e.g., '/luxvlasy_mamp/' if your project is in /htdocs/luxvlasy_mamp/
-$basePath = '/luxvlasy_mamp/';
+$basePath = BASE_URL_PATH;
 
 // PHP code to calculate the current number of items in the cart for display in the header.
 $cartItemCount = 0;
@@ -23,6 +23,11 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo $basePath; ?>style.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        const BASE_URL_JS = "<?php echo BASE_URL_PATH; ?>";
+        console.log("XXX:", "<?php echo BASE_URL_PATH; ?>")
+    </script>
 
     <script src="<?php echo $basePath; ?>js/cart.js?v=<?php echo time(); ?>" defer></script>
     <script src="<?php echo $basePath; ?>js/main.js?v=<?php echo time(); ?>" defer></script>

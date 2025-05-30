@@ -4,6 +4,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// *** ADD THIS LINE: Include your database connection and constants ***
+require_once 'php/db_connection.php'; // Make sure this path is correct relative to index.php
+
+// Define the base path for consistent URL generation
+// *** ADD THIS LINE: If you want to use a PHP variable for base path in HTML ***
+$basePath = BASE_URL_PATH;
+
+
 // PHP kód: Výpočet počtu položiek v košíku
 $cartItemCount = 0;
 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
@@ -19,27 +27,34 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxvlasy.sk</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>"> <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>style.css?v=<?php echo time(); ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <script src="js/main.js?v=<?php echo time(); ?>" defer></script>
-    <script src="js/cart.js?v=<?php echo time(); ?>" defer></script>
-    <script src="js/product_display.js?v=<?php echo time(); ?>" defer></script>
+    <script>
+        window.BASE_URL_JS = "<?php echo BASE_URL_PATH; ?>";
+        window.API_SUBDIR_JS = "<?php echo API_PATH_DIR; ?>";
+        console.log("INDEX.PHP - BASE_URL_JS defined globally:", window.BASE_URL_JS); // For debugging
+    </script>
+
+    <script src="<?php echo $basePath; ?>js/main.js?v=<?php echo time(); ?>" defer></script>
+    <script src="<?php echo $basePath; ?>js/cart.js?v=<?php echo time(); ?>" defer></script>
+    <script src="<?php echo $basePath; ?>js/product_display.js?v=<?php echo time(); ?>" defer></script>
 </head>
 <body>
 <header class="main-header">
     <div class="header-container">
         <div class="brand-logo">
-            <a href="index.php">
-                <img src="images/logo.png" alt="LuxVlasy.sk Logo" class="site-logo">
+            <a href="<?php echo $basePath; ?>index.php">
+                <img src="<?php echo $basePath; ?>images/logo.png" alt="LuxVlasy.sk Logo" class="site-logo">
             </a>
         </div>
 
         <nav class="main-nav">
             <ul class="nav-list">
-                <li class="nav-item"><a href="index.php">Domov</a></li>
-                <li class="nav-item"><a href="index.php?category=Šampóny">Starostlivosť o vlasy</a></li>
-                <li class="nav-item"><a href="index.php?category=Luxusné%20doplnky">Luxusné doplnky</a></li>
-                <li class="nav-item"><a href="index.php?filter=discount">Akcie</a></li>
+                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php">Domov</a></li>
+                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?category=Šampóny">Starostlivosť o vlasy</a></li>
+                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?category=Luxusné%20doplnky">Luxusné doplnky</a></li>
+                <li class="nav-item"><a href="<?php echo $basePath; ?>index.php?filter=discount">Akcie</a></li>
             </ul>
         </nav>
 
@@ -47,7 +62,7 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
             <a href="#" class="icon-link"><i class="far fa-heart"></i></a>
             <a href="#" class="icon-link"><i class="far fa-user"></i></a>
-            <a href="cart.php" class="icon-link cart-icon">
+            <a href="<?php echo $basePath; ?>cart.php" class="icon-link cart-icon">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-count-badge" id="cart-item-count"><?php echo $cartItemCount; ?></span>
             </a>
@@ -59,7 +74,7 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
         <section id="promo-slider-container" class="slider-section">
             <div id="promoSlider" class="slider">
                 <div class="slider-item active">
-                    <img src="images/love_your_hair.png" alt="Starostlivost o vlasy akcia">
+                    <img src="<?php echo $basePath; ?>images/love_your_hair.png" alt="Starostlivost o vlasy akcia">
                     <div class="slider-caption">
                         <h5>Letný výpredaj!</h5>
                         <p>Až 30% zľava na vybrané položky.</p>
@@ -67,7 +82,7 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     </div>
                 </div>
                 <div class="slider-item">
-                    <img src="images/BalmainHair_WEB_CampaignBanners_C1_2023_MaskPromo_02_EN_700x932_01ce7ce1-76d4-42f6-a749-15dcdf267b95.webp" alt="Balmain akcia">
+                    <img src="<?php echo $basePath; ?>images/BalmainHair_WEB_CampaignBanners_C1_2023_MaskPromo_02_EN_700x932_01ce7ce1-76d4-42f6-a749-15dcdf267b95.webp" alt="Balmain akcia">
                     <div class="slider-caption">
                         <h5>Novinky!</h5>
                         <p>Objavte najnovšie v kozmetike na vlasy.</p>
@@ -75,7 +90,7 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     </div>
                 </div>
                 <div class="slider-item">
-                    <img src="images/BalmainHair_WEB_MOBILE_HC_Webshop_Slider_C1_Promo_IlluminatingHairMask_C1_25_US_1400x.webp" alt="Balmain maska na vlasy">
+                    <img src="<?php echo $basePath; ?>images/BalmainHair_WEB_MOBILE_HC_Webshop_Slider_C1_Promo_IlluminatingHairMask_C1_25_US_1400x.webp" alt="Balmain maska na vlasy">
                     <div class="slider-caption">
                         <h5>Doprava zadarmo!</h5>
                         <p>Pri všetkých objednávkach nad 50 € tento týždeň.</p>

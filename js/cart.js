@@ -1,6 +1,7 @@
+// cart.js
 // Define the base path for consistent URL generation.
 // This must match your MAMP setup, e.g., '/luxvlasy_mamp/' if your project is in /htdocs/luxvlasy_mamp/
-const basePath = '/luxvlasy_mamp/'; // KEEP THIS EXACTLY AS IS
+const basePath = BASE_URL_JS;
 
 // Global function to update the cart count badge in the header
 window.updateCartCount = function(count) {
@@ -93,7 +94,7 @@ window.fetchCartItemsAndDisplay = async function() {
         window.updateCartCount(data.newCartCount);
     } catch (error) {
         // In a production environment, you might log this to a server-side error tracker
-        // console.error('Error fetching cart items:', error); // Removed for production
+        console.error('Error fetching cart items:', error); // Removed for production
         cartItemsContainer.innerHTML = '<p class="error-message">Chyba pri načítaní košíka. Skúste to prosím neskôr.</p>';
         cartSummaryTotal.textContent = '€0,00';
         checkoutBtn.disabled = true;
@@ -118,7 +119,7 @@ window.updateCartItemQuantity = async function(productId, quantity) {
         }
         await window.fetchCartItemsAndDisplay(); // Re-fetch to update display and totals
     } catch (error) {
-        // console.error('Error updating quantity:', error); // Removed for production
+        console.error('Error updating quantity:', error); // Removed for production
         alert('Chyba pri aktualizácii množstva.');
     }
 };
@@ -140,7 +141,7 @@ window.removeFromCart = async function(productId) {
         }
         await window.fetchCartItemsAndDisplay(); // Re-fetch to update display and totals
     } catch (error) {
-        // console.error('Error removing item:', error); // Removed for production
+        console.error('Error removing item:', error); // Removed for production
         alert('Chyba pri odstraňovaní položky z košíka.');
     }
 };
@@ -291,7 +292,7 @@ if (checkoutProcessContainer) { // This condition ensures the code only runs on 
                 }
 
                 try {
-                    const response = await fetch('php/process_order.php', {
+                    const response = await fetch(`${basePath}php/process_order.php`, {
                         method: 'POST',
                         body: formData
                     });
@@ -305,7 +306,7 @@ if (checkoutProcessContainer) { // This condition ensures the code only runs on 
                         alert('Chyba pri objednávke: ' + result.message);
                     }
                 } catch (error) {
-                    // console.error('Error in fetch or JSON parsing:', error); // Removed for production
+                    console.error('Error in fetch or JSON parsing:', error); // Removed for production
                     alert('Došlo k chybe pri komunikácii so serverom alebo spracovaní odpovede.');
                 }
             });
@@ -409,7 +410,7 @@ if (checkoutProcessContainer) { // This condition ensures the code only runs on 
                 }
 
             } catch (error) {
-                // console.error('Error fetching shipping/payment options:', error); // Removed for production
+                console.error('Error fetching shipping/payment options:', error); // Removed for production
                 if (shippingOptionsDiv) shippingOptionsDiv.innerHTML = '<p class="error-message">Chyba pri načítaní možností dopravy.</p>';
                 if (paymentOptionsDiv) paymentOptionsDiv.innerHTML = '<p class="error-message">Chyba pri načítaní možností platby.</p>';
                 if (continueToInfoBtn) continueToInfoBtn.disabled = true;
@@ -434,7 +435,7 @@ if (checkoutProcessContainer) { // This condition ensures the code only runs on 
                         }
                     })
                     .catch(error => {
-                        // console.error('Error fetching cart count on pageshow:', error); // Removed for production
+                        console.error('Error fetching cart count on pageshow:', error); // Removed for production
                         window.updateCartCount(0);
                     });
 

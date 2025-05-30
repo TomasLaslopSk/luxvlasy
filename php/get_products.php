@@ -23,8 +23,10 @@ try {
                                 hover_image,
                                 brand,
                                 product_category,
-                                stock
-                            FROM products");
+                                stock,
+                                is_active -- Include the new is_active column
+                            FROM products
+                            WHERE is_active = 1"); // Filter to display only active products
     $stmt->execute();
     $dbProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define your project's base path. This is crucial for consistent asset loading.
     // Example: For http://localhost:8888/luxvlasy_mamp/, the basePath should be '/luxvlasy_mamp/'.
     // If your project was directly in htdocs (e.g., http://localhost:8888/), it would be '/'.
-    const basePath = '/luxvlasy_mamp/';
+    const basePath = BASE_URL_JS;
+    
 
     if (!productListContainer) {
         console.warn("Element with ID 'product-list' not found. Product display script will not run.");

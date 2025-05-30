@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produkty</title>
-    <link rel="stylesheet" href="/luxvlasy_mamp/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL_PATH; ?>style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="main-nav">
             <ul>
-                <li class="nav-item"><a href="/luxvlasy_mamp/products.php?category=Luxusné%20doplnky">Luxusné doplnky</a></li>
-                <li class="nav-item"><a href="/luxvlasy_mamp/products.php?filter=discount">Akcie</a></li>
-                <li class="nav-item"><a href="/luxvlasy_mamp/index.php">Domov</a></li>
+                <li class="nav-item"><a href="<?php echo BASE_URL_PATH; ?>products.php?category=Luxusné%20doplnky">Luxusné doplnky</a></li>
+                <li class="nav-item"><a href="<?php echo BASE_URL_PATH; ?>products.php?filter=discount">Akcie</a></li>
+                <li class="nav-item"><a href="<?php echo BASE_URL_PATH; ?>index.php">Domov</a></li>
             </ul>
         </nav>
         </header>
@@ -42,7 +42,7 @@
     <footer>
         </footer>
 
-    <script src="/luxvlasy_mamp/js/cart.js"></script>
-    <script src="/luxvlasy_mamp/js/product_display.js"></script>
+    <script src="<?php echo BASE_URL_PATH; ?>js/cart.js"></script>
+    <script src="<?php echo BASE_URL_PATH; ?>js/product_display.js"></script>
 </body>
 </html>

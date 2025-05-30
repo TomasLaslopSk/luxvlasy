@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Define the base path for consistent URL generation
-$basePath = '/luxvlasy_mamp/'; // This must match your MAMP setup
+$basePath = BASE_URL_PATH; // This must match your MAMP setup
 
 $order_id = null;
 $order_details = null;
